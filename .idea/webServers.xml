@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bb1c331c-0cbf-465f-8c3e-4cbf07fd7f9c" name="IUT*" url="http://symfony.iut-blagnac.fr">
+        <fileTransfer rootFolder="/home/syfy33" accessType="SFTP" host="193.54.227.208" port="22" sshConfigId="9fd1e9d5-d55f-4162-a90e-595fed2517a1" sshConfig="syfy33@193.54.227.208:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

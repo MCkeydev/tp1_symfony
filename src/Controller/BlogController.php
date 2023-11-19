@@ -12,7 +12,7 @@ class BlogController extends AbstractController
      * La route suivante accepte deux paramètres : "id" et "title", qui sont respectivement un int et une string.
      */
     #[Route('/blog/{id}/{title}', name: 'app_blog', methods: ['GET'], requirements: ['name' => '[a-zA-Z]{5,50}', 'id' => '[0-9]{2,6}'])]
-    public function index($id, $title): Response
+    public function index(int $id, string $title): Response
     {
         return $this->render('blog/index.html.twig', [
             'id' => $id,
