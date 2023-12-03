@@ -29,9 +29,7 @@ class TestController extends AbstractController
                     'city' => $faker->city(),
                     'country' => $faker->country(),
                 ],
-                'picture' => $faker->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg'),
-                'cover' => $faker->imageUrl(),
-                'createdAt' => $faker->date(),
+                'picture' => $faker->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg')
             ];
 
             $users[$i] = $user;

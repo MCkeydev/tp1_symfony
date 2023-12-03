@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} The Blog {% endblock %}
+
+{% block body %}
+    <div class="flex">
+        <div class="single-article">
+            <div class="article-image">
+                <img src="{{ article.imageUrl }}" alt="image de couverture de l'article {{ article.title }}" />
+            </div>
+            <p class="content">
+                {{ article.content }}
+            </p>
+        </div>
+        <div class="article-content-details">
+            <h2 class="article-title"> {{ article.title }} </h2>
+            <div class="article-createdAt"> {{ article.fromNow }} </div>
+            <div class="article-categories flex wrap">
+                {% for category in article.categories %}
+                    <a class="article-category-item badge" href="{{ path('app_articles_by_category', { slug: category.slug })  }}">
+                        {{ category.name }} ({{ category.articles | length }} article(s) publié(s))
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
