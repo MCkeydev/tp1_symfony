@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Chanson{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une chanson</h1>
+    <div class="py-2"></div>
+    {{ include('chanson/_form.html.twig') }}
+    <div class="my-4 border-top"></div>
+    <a class="btn btn-primary" href="{{ path('app_chanson_index') }}">Retour à la liste</a>
+{% endblock %}

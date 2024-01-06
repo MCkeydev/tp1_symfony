@@ -80,7 +80,7 @@ class BlogFixtures extends Fixture
             $dateC = \DateTimeImmutable::createFromMutable($faker->dateTime());
             // Création d'une catégorie factice
             $category = (new Category())
-                ->setName($faker->name())
+                ->setName($faker->sentence(2))
                 ->setDescription($faker->paragraph())
                 ->setImageUrl("https://picsum.photos/360/360?image=".($i+200))
                 ->setCreatedAt($dateC);

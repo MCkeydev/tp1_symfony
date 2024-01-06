@@ -25,34 +25,26 @@ class BlogController extends AbstractController
     }
 
     #[Route('/blog/articles', name: 'app_blog_article')]
-    public function getAllArticles(ArticleRepository $articleRepository, CategoryRepository $categoryRepository) {
+    public function getAllArticles(ArticleRepository $articleRepository) {
         $articles = $articleRepository->findAll();
-        $categories = $categoryRepository->findAll();
 
         return $this->render('blog/index.html.twig', [
             'articles' => $articles,
-            'categories' => $categories,
         ]);
     }
 
     #[Route('/blog/articles/{slug}', name: 'app_single_article')]
-    public function singleArticle(Article $article, CategoryRepository $categoryRepository): Response
+    public function singleArticle(Article $article): Response
     {
-        $categories = $categoryRepository->findAll();
-
         return $this->render('blog/single.html.twig', [
             'article' => $article,
-            'categories' => $categories,
         ]);
     }
 
     #[Route('/blog/category/{slug}', name: 'app_articles_by_category')]
-    public function articlesByCategory(Category $category, CategoryRepository $categoryRepository) {
-        $categories = $categoryRepository->findAll();
-
+    public function articlesByCategory(Category $category) {
         return $this->render('blog/index.html.twig', [
             'articles' => $category->getArticles(),
-            'categories' => $categories,
             'category' => $category,
         ]);
     }

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column">
+
+    <h1 class="mb-4">Article index</h1>
+    {% for notice in app.flashes('notice') %}
+        {{ notice }}
+    {% endfor %}
+    <a class="btn btn-primary mb-4 align-self-start" href="{{ path('app_article_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>ImageUrl</th>
+                <th>Slug</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content }}</td>
+                <td>
+                    <img src="{{ article.imageUrl }}" alt="thumbnail" class="img-thumbnail">
+                </td>
+                <td>{{ article.slug }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ article.updatedAt ? article.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-primary mb-1" href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

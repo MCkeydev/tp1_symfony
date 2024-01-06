@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste index{% endblock %}
+
+{% block body %}
+    <h1>Liste d'artiste du type : {{ type }} </h1>
+    <div class="py-3"></div>
+    <span><strong>{{ artistes | length }}</strong> artistes trouvés</span>
+    <div class="py-2"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date de naissance</th>
+                <th>Lieu de naissance</th>
+                <th>Photo</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artiste in artistes %}
+            <tr>
+                <td>{{ artiste.id }}</td>
+                <td>{{ artiste.nom }}</td>
+                <td>{{ artiste.prenom }}</td>
+                <td>{{ artiste.dateNaissance ? artiste.dateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ artiste.lieuNaissance }}</td>
+                <td>
+                    <img src="{{ artiste.photo }}" alt="thumbnail" class="img-thumbnail">
+                </td>
+                <td>{{ artiste.description }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_artiste_show', {'id': artiste.id}) }}">Détails</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

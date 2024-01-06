@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chanson{% endblock %}
+
+{% block body %}
+    <h1>Chanson</h1>
+    <div class="py-2"></div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chanson.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ chanson.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date de sortie</th>
+                <td>{{ chanson.dateSortie ? chanson.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ chanson.genre }}</td>
+            </tr>
+            <tr>
+                <th>Langue</th>
+                <td>{{ chanson.langue }}</td>
+            </tr>
+            <tr>
+                <th>Couverture</th>
+                <td>
+                    <img src="{{ chanson.photoCouverture }}" alt="couverture" class="img-thumbnail" style="max-height: 400px; width: auto"/>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <h4>
+        Artistes
+    </h4>
+    <table class="table">
+        <tbody>
+            {% for artist in chanson.getArtistes() %}
+                <tr>
+                    <th scope="row">
+                        <img src="{{ artist.photo }}" alt="couverture" class="img-thumbnail rounded-circle" style="height: 40px; min-width: 40px; width: 40px;"/>
+                    </th>
+                    <td class="align-middle" colspan="2">{{ artist.nom }} {{ artist.prenom }}</td>
+                    <td class="align-middle ">
+                        {{ artist.description }}
+                    </td>
+                    <td class="align-middle">
+                        <a class="btn btn-primary" href="{{ path('app_artiste_show', { 'id': artist.id }) }}">Détails</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="py-2"></div>
+    <div class="d-flex mt-2 border-top pt-4">
+        <a class="btn btn-primary mr-2" href="{{ path('app_chanson_index') }}">Retour à la liste</a>
+
+        <a class="btn btn-primary mr-2" href="{{ path('app_chanson_edit', {'id': chanson.id}) }}">Modifier</a>
+
+        {{ include('chanson/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

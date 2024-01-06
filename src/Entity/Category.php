@@ -147,4 +147,9 @@ class Category
     {
         $this->slug = $slug;
     }
+
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
 }
